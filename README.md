@@ -437,17 +437,21 @@ FundPilot AI 的核心差异化特性是其**多 Agent AI 系统**，采用编�
 
 ### 登录页
 深色背景 + 渐变网格 + 毛玻璃登录卡片，支持登录/注册切换。
+
 ![e25b83c3708347929e0a5cedb48cce1c.png](fundpilot-ai-backend/src/main/resources/Example_Photo/e25b83c3708347929e0a5cedb48cce1c.png)
 
 ### 仪表盘
+
 欢迎卡片 + 4 个统计指标（总资产/收益/夏普比率/基金数量）+ 市场行情面板 + 快捷操作 + AI 洞察。
 ![e57d13b5ea7b94ed3d972a55ea9ee3bb.png](fundpilot-ai-backend/src/main/resources/Example_Photo/e57d13b5ea7b94ed3d972a55ea9ee3bb.png)
 
 ### 基金列表
+
 暗色搜索面板 + 现代数据表格，基金代码使用等宽字体，风险等级彩色标签。
 ![f541077d293a29f58787b67743cbc56f.png](fundpilot-ai-backend/src/main/resources/Example_Photo/f541077d293a29f58787b67743cbc56f.png)
 
 ### 基金详情
+
 净值走势图（ECharts 渐变面积图）+ 业绩指标网格 + 基金经理信息 + 持仓分布表。
 ![6a57fa198bfc7c0282f6113138eab426.png](fundpilot-ai-backend/src/main/resources/Example_Photo/6a57fa198bfc7c0282f6113138eab426.png)
 
@@ -455,6 +459,7 @@ FundPilot AI 的核心差异化特性是其**多 Agent AI 系统**，采用编�
 多选基金输入 + 对比数据网格 + 收益率柱状图 + 一键生成对比报告。
 
 ### 组合管理
+
 组合卡片网格，每个组合显示基金数量、创建日期、操作按钮。
 ![05d31f027fe2dd81a31c86460a06992e.png](fundpilot-ai-backend/src/main/resources/Example_Photo/05d31f027fe2dd81a31c86460a06992e.png)
 
@@ -462,10 +467,12 @@ FundPilot AI 的核心差异化特性是其**多 Agent AI 系统**，采用编�
 指标卡片 + 雷达图 + 风险评分表 + 饼图 + 行业分布表 + 持仓重叠分析。
 
 ### AI 顾问
+
 ChatGPT 风格界面：左侧会话列表 + 右侧聊天区，支持打字指示器、建议卡片、自动滚动。
 ![79eda6b0e4c59f877b6a75af46ebb8da.png](fundpilot-ai-backend/src/main/resources/Example_Photo/79eda6b0e4c59f877b6a75af46ebb8da.png)
 
 ### 用户中心
+
 双栏布局：左侧个人资料卡（头像/信息/退出）+ 右侧统计面板 + 快捷操作。
 ![3fbb0f11414331b6a2a7f072f69743fc.png](fundpilot-ai-backend/src/main/resources/Example_Photo/3fbb0f11414331b6a2a7f072f69743fc.png)
 
