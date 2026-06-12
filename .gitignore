@@ -1,0 +1,29 @@
+# Backend
+fundpilot-ai-backend/target/
+fundpilot-ai-backend/*.class
+fundpilot-ai-backend/.idea/
+fundpilot-ai-backend/*.iml
+
+# Backend - sensitive config (contains passwords and API keys)
+fundpilot-ai-backend/src/main/resources/application-dev.yml
+fundpilot-ai-backend/src/main/resources/application-*.yml
+
+# Frontend
+fundpilot-ai-frontend/node_modules/
+fundpilot-ai-frontend/dist/
+fundpilot-ai-frontend/.env.local
+fundpilot-ai-frontend/.env.*.local
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

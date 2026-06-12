@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fundpilot.mapper.FundHoldingMapper">
+
+    <!-- 查询指定报告日期的持仓列表 -->
+    <select id="selectHoldingsByDate" resultType="com.fundpilot.vo.HoldingVO">
+        SELECT
+            `rank`       AS `rank`,
+            stock_code   AS stockCode,
+            stock_name   AS stockName,
+            hold_ratio   AS holdRatio,
+            hold_amount  AS holdAmount,
+            hold_shares  AS holdShares
+        FROM fund_holding
+        WHERE fund_code = #{fundCode}
+          AND report_date = #{reportDate}
+          AND deleted = 0
+        ORDER BY `rank` ASC
+    </select>
+
+</mapper>

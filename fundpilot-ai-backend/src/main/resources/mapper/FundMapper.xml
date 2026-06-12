@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fundpilot.mapper.FundMapper">
+
+    <!-- 基金列表搜索（关联最新净值，支持动态排序 + 分页） -->
+    <select id="selectFundList" resultType="com.fundpilot.vo.FundListVO">
+        SELECT
+            f.fund_code        AS fundCode,
+            f.fund_name        AS fundName,
+            f.fund_type        AS fundType,
+            f.risk_level       AS riskLevel,
+            f.establish_date   AS establishDate,
+            f.scale            AS scale,
+            fn.unit_nav        AS latestNav,
+            fn.nav_date        AS latestNavDate,
+            fn.daily_return    AS dailyReturn
+        FROM fund f
+        LEFT JOIN fund_nav fn
+            ON f.fund_code = fn.fund_code
+           AND fn.deleted = 0
+           AND fn.nav_date = (
+               SELECT MAX(n2.nav_date)
+               FROM fund_nav n2
+               WHERE n2.fund_code = f.fund_code AND n2.deleted = 0
+           )
+        WHERE f.deleted = 0
+          AND f.status = 1
+        <if test="keyword != null and keyword != ''">
+            AND (f.fund_code LIKE CONCAT('%', #{keyword}, '%')
+              OR f.fund_name LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="fundType != null and fundType != ''">
+            AND f.fund_type = #{fundType}
+        </if>
+        <if test="riskLevel != null and riskLevel != ''">
+            AND f.risk_level = #{riskLevel}
+        </if>
+        ORDER BY
+        <choose>
+            <when test="sortBy == 'dailyReturn'">
+                fn.daily_return <if test="sortOrder == 'asc'">ASC</if><if test="sortOrder != 'asc'">DESC</if>
+            </when>
+            <when test="sortBy == 'scale'">
+                f.scale <if test="sortOrder == 'asc'">ASC</if><if test="sortOrder != 'asc'">DESC</if>
+            </when>
+            <when test="sortBy == 'establishDate'">
+                f.establish_date <if test="sortOrder == 'asc'">ASC</if><if test="sortOrder != 'asc'">DESC</if>
+            </when>
+            <otherwise>
+                fn.daily_return DESC
+            </otherwise>
+        </choose>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 搜索总数 -->
+    <select id="selectFundCount" resultType="int">
+        SELECT COUNT(*)
+        FROM fund f
+        WHERE f.deleted = 0
+          AND f.status = 1
+        <if test="keyword != null and keyword != ''">
+            AND (f.fund_code LIKE CONCAT('%', #{keyword}, '%')
+              OR f.fund_name LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="fundType != null and fundType != ''">
+            AND f.fund_type = #{fundType}
+        </if>
+        <if test="riskLevel != null and riskLevel != ''">
+            AND f.risk_level = #{riskLevel}
+        </if>
+    </select>
+
+    <!-- 根据基金代码查询 -->
+    <select id="selectByFundCode" resultType="com.fundpilot.entity.Fund">
+        SELECT * FROM fund
+        WHERE fund_code = #{fundCode} AND deleted = 0
+        LIMIT 1
+    </select>
+
+</mapper>

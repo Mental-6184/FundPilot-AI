@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fundpilot.mapper.FundManagerMapper">
+
+    <!-- 根据基金代码查询经理信息 -->
+    <select id="selectManagerByFundCode" resultType="com.fundpilot.vo.ManagerVO">
+        SELECT
+            m.id            AS id,
+            m.name          AS name,
+            m.gender        AS gender,
+            m.company       AS company,
+            m.tenure_years  AS tenureYears,
+            m.education     AS education,
+            m.biography     AS biography,
+            m.invest_style  AS investStyle,
+            m.best_return   AS bestReturn,
+            m.manage_count  AS manageCount,
+            m.total_manage  AS totalManage,
+            m.status        AS status
+        FROM fund_manager m
+        INNER JOIN fund f ON f.manager_id = m.id
+        WHERE f.fund_code = #{fundCode}
+          AND f.deleted = 0
+          AND m.deleted = 0
+        LIMIT 1
+    </select>
+
+</mapper>

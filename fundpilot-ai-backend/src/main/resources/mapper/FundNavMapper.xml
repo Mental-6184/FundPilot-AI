@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fundpilot.mapper.FundNavMapper">
+
+    <!-- 查询净值走势 -->
+    <select id="selectNavTrend" resultType="com.fundpilot.vo.NavPointVO">
+        SELECT
+            nav_date   AS `date`,
+            unit_nav   AS unitNav,
+            acc_nav    AS accNav
+        FROM fund_nav
+        WHERE fund_code = #{fundCode}
+          AND nav_date BETWEEN #{startDate} AND #{endDate}
+          AND deleted = 0
+        ORDER BY nav_date ASC
+    </select>
+
+</mapper>
